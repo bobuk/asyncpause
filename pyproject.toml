@@ -1,0 +1,21 @@
+[project]
+name = "asyncpause"
+version = "0.1.0"
+description = "a Python library to schedule and persist async function calls, ensuring they run exactly when you need them, even after restarts."
+authors = [
+    {name = "Grigory Bakunov", email = "bobuk@rubedo.cloud"},
+]
+dependencies = [
+    "aiofiles>=23.0.0",
+]
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "Unlicense"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
