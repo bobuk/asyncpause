@@ -44,6 +44,26 @@ asyncio.run(main())
 
 In this example, the `aprint` function its just an example. Just run this script, and watch your console get filled with timely greetings.
 
+If you want to decouple the function call from background processes initialiation, you can use the `start_background` method:
+
+```python
+import asyncio
+from datetime import datetime, timedelta
+from asyncpause import AsyncPause
+
+async def aprint(*args, **kwargs):
+    print(*args, **kwargs)
+
+D = AsyncPause(aprint, filepath="aprint.scheduled.calls")
+
+async def main():
+    d = await D.start_background()
+    d.set(datetime.now(), "Hello, world!")
+    d.set(timedelta(seconds=1), "Hello, world after a second!")
+    await asyncio.sleep(3)
+asyncio.run(main())
+```
+
 ## How It Works
 
 1. **Initialization**: Create an `AsyncPause` object with your target function.
